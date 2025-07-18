@@ -1,0 +1,15 @@
+# Basic Pay Computation
+hours_work = 6
+hourly_rate = 100
+basic_pay = hours_work * hourly_rate
+if basic_pay > 500:
+    result = True
+else: 
+    result = False
+# Output
+print("=" * 35)
+print("      Employee's Basic Pay")
+print("-" * 35)
+print(f"       Basic Pay: {basic_pay}")
+print(f"       Pay Exceed 500: {result}" )
+print("=" * 35)
