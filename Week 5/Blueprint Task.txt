@@ -1,0 +1,14 @@
+Blueprint Task
+
+What classes would exist?
+⦁	 Base Class - Inventory_Management_System
+⦁	 class delete_item
+⦁	 the method add_item will be converted into class add_item
+⦁	 class edit_item
+⦁	 convert the display_inventory into class
+⦁	 convert the calculate_total_value into class
+
+How would you split the system into modules?
+⦁	In splitting the system into modules, I will make the methods a class for a more modularize system
+If you had a database, what table would you design first?
+⦁	 In database, the table I will design first will be the add_item since the database will be empty because it has no item in there.
