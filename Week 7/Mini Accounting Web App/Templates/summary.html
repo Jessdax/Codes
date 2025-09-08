@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Summary</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>Account Summary</h1>
+
+  <div class="summary-box">
+    <p>Total Income: <span class="income">{{ income }}</span></p>
+    <p>Total Expenses: <span class="expenses">{{ expenses }}</span></p>
+    <p>Net Balance: <span class="balance">{{ balance }}</span></p>
+  </div>
+
+  <a class="button" href="{{ url_for('index') }}">Back</a>
+</div>
+</body>
+</html>
