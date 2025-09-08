@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='register.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <header class="sidebar">
+            <div class="sidebar-top">
+                <h1 class="welcome">Welcome! Register Here</h1>
+            </div>
+        </header>
+
+        <!-- Main content -->
+        <main>
+            <form method="POST">
+                <h2 class="register">Create Staff Account</h2>
+
+                <label>Username
+                    <input type="text" name="username" required placeholder="Enter your username">
+                </label>
+
+                <label>Password
+                    <input type="password" name="password" required placeholder="Enter your password">
+                </label>
+
+                <button type="submit">Register</button>
+
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <div class="flash">
+                            {% for msg in messages %}<div>{{ msg }}</div>{% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <p>Already have an account? <a href="{{ url_for('login_page') }}">Back to Login</a></p>
+            </form>
+        </main>
+    </div>
+</body>
+</html>

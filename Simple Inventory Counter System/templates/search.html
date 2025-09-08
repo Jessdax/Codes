@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Search Items</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='search.css') }}">
+    <script src="{{ url_for('static', filename='search.js') }}" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <!-- Logo / Brand -->
+    <div class="brand">
+        <h2><i class="fas fa-boxes"></i> Inventory</h2>
+    </div>
+
+    <!-- Links -->
+    <a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+    <a href="{{ url_for('add') }}"><i class="fas fa-plus-circle"></i> Add Item</a>
+    <a href="{{ url_for('view_inventory') }}"><i class="fas fa-clipboard-list"></i> View Inventory</a>        
+    <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </nav>
+
+  <!-- Main content -->
+  <div class="main">
+
+    <form method="POST" onsubmit="showLoader()">
+        <label>
+            <input name="keyword" placeholder="Search by name…" value="{{ request.form.keyword or '' }}">
+        </label>
+    
+        <label>
+            <select name="category">
+                <option value="">(any category)</option>
+                {% for c in categories %}
+                    <option value="{{ c }}" {% if request.form.category==c %}selected{% endif %}>{{ c }}</option>
+                {% endfor %}
+            </select>
+        </label>
+    
+        <button type="submit"><i class="fas fa-search"></i> Search</button>
+    </form>
+    
+      {% if results and results|length > 0 %}
+          <table>
+              <thead>
+                  <tr><th>ID</th><th>Name</th><th>Quantity</th><th>Category</th><th>Actions</th></tr>
+              </thead>
+              <tbody>
+                  {% for item in results %}
+                      <tr>
+                          <td>{{ item[0] }}</td>
+                          <td>{{ item[1] }}</td>
+                          <td>{{ item[2] }}</td>
+                          <td>{{ item[3] }}</td>
+                          <td>
+                            <a href="{{ url_for('update', item_id=item[0]) }}" class="btn update-btn"><i class="fas fa-edit"></i> Update</a>
+                            <a href="{{ url_for('delete', item_id=item[0]) }}" onclick="return confirm('Delete this item?');" class="btn delete-btn"><i class="fas fa-trash-alt"></i> Delete</a>
+                        </td>
+                      </tr>
+                  {% endfor %}
+              </tbody>
+          </table>
+      {% elif request.method == 'POST' %}
+          <div class="nores">No items found.</div>
+      {% endif %}
+  </div>
+
+  <div class="loading" id="loading">
+      <div class="loader"></div>
+      Loading...
+  </div>
+</body>
+</html>

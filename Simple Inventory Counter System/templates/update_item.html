@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Update Item</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='update.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+  <!-- Sidebar -->
+  <nav class="sidebar">
+    <!-- Logo / Brand -->
+    <div class="brand">
+      <h1<i class="fas fa-boxes"></i> Inventory</h1>
+    </div>
+  
+    <!-- Sidebar Links -->
+    <a href="{{ url_for('index') }}"><i class="fas fa-home"></i> Home</a>
+    <a href="{{ url_for('add') }}"><i class="fas fa-plus-circle"></i> Add Item</a>
+    <a href="{{ url_for('search') }}"><i class="fas fa-search"></i> Search</a>
+    <a href="{{ url_for('view_inventory') }}"><i class="fas fa-clipboard-list"></i> Inventory</a>
+    <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </nav>
+
+
+  <!-- Main Content -->
+  <div class="main">
+    <h1>Update Item #{{ item_id }}</h1>
+    <p class="muted">Leave any field blank to keep its current value.</p>
+
+    <form method="POST">
+      <label>
+        <i class=""></i> New Name
+        <input name="name" placeholder="(no change)" value="{{ current_name }}">
+      </label>
+
+      <label>
+        <i class=""></i> New Quantity
+        <input type="number" name="quantity" min="0" placeholder="(no change)" value="{{ current_quantity }}">
+      </label>
+
+      <label>
+        <i class=""></i> New Category
+        <select name="category">
+          <option value="">(no change)</option>
+          {% for c in categories %}
+            <option value="{{ c }}" {% if current_category == c %}selected{% endif %}>{{ c }}</option>
+          {% endfor %}
+        </select>
+      </label>
+
+      <button type="submit"><i class="fas fa-save"></i> Save Changes</button>
+    </form>
+  </div>
+</body>
+</html>

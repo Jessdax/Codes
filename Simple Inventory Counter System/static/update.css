@@ -1,0 +1,174 @@
+/* =======================
+   VARIABLES & RESET
+======================= */
+:root {
+    --color-bg: #f4f6f9;
+    --color-primary: #4ade80;
+    --color-primary-dark: #16a34a;
+    --color-danger: #f87171;
+    --color-danger-dark: #dc2626;
+    --color-text: #1f2937;
+    --color-text-light: #6b7280;
+    --color-card-bg: #ffffff;
+    --color-input-border: #d1d5db;
+    --transition: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    transition: background-color var(--transition), color var(--transition);
+}
+
+/* DARK MODE */
+body.dark-mode {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+body.dark-mode nav {
+    background-color: #111827;
+}
+
+body.dark-mode input,
+body.dark-mode select {
+    background-color: #374151;
+    color: #f9fafb;
+    border-color: #4b5563;
+}
+
+body.dark-mode button {
+    color: #f9fafb;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 220px;
+    background-color: #1e293b;
+    color: white;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sidebar .brand {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color var(--transition);
+}
+
+.sidebar a i {
+    width: 18px;
+    text-align: center;
+}
+
+.sidebar a:hover {
+    color: var(--color-primary);
+}
+
+/* MAIN CONTENT */
+.main {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--color-bg);
+}
+
+/* HEADINGS */
+.main h1 {
+    font-size: 28px;
+    margin-bottom: 6px;
+}
+
+.main .muted {
+    color: var(--color-text-light);
+    margin-bottom: 20px;
+}
+
+/* FORM */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: var(--color-card-bg);
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+form label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+}
+
+form input,
+form select {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-input-border);
+    font-size: 14px;
+    margin-top: 6px;
+    transition: border-color var(--transition), background-color var(--transition);
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* BUTTON */
+form button {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color var(--transition);
+}
+
+form button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 20px;
+    }
+    .main {
+        padding: 20px;
+    }
+}

@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>   
+    <div class="container">
+        <header class="sidebar">
+            <div class="sidebar-top">
+                <h2><i class="fas fa-user-shield"></i> Admin Dashboard</h2>
+            </div>
+        </header>
+
+        <main>
+            <section class="header-card">
+                <h1>Staff Management</h1>
+                <section class="search-bar">
+                    <form method="GET" action="{{ url_for('admin_dashboard') }}">
+                        <input type="text" name="q" placeholder="Search by username..." value="{{ request.args.get('q','') }}">
+                        <select name="status">
+                            <option value="">All Statuses</option>
+                            <option value="approved" {% if request.args.get('status')=='approved' %}selected{% endif %}>Approved</option>
+                            <option value="pending" {% if request.args.get('status')=='pending' %}selected{% endif %}>Pending</option>
+                            <option value="rejected" {% if request.args.get('status')=='rejected' %}selected{% endif %}>Rejected</option>
+                        </select>
+                        <button type="submit"><i class="fas fa-search"></i> Search</button>
+                    </form>
+                </section>
+            </section>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="flash">
+                        {% for msg in messages %}
+                            <div>{{ msg }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for staff in staff_list %}
+                        <tr>
+                            <td>{{ staff[0] }}</td>
+                            <td>{{ staff[1] }}</td>
+                            <td>
+                                {% if staff[2] == 'approved' %}
+                                    <span class="status approved">Approved</span>
+                                {% elif staff[2] == 'pending' %}
+                                    <span class="status pending">Pending</span>
+                                {% elif staff[2] == 'rejected' %}
+                                    <span class="status rejected">Rejected</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if staff[2] != 'approved' %}
+                                    <a href="{{ url_for('approve_staff', staff_id=staff[0]) }}" class="btn approve"><i class="fas fa-check"></i> Approve</a>
+                                {% endif %}
+                                {% if staff[2] != 'rejected' %}
+                                    <a href="{{ url_for('reject_staff', staff_id=staff[0]) }}" class="btn reject"><i class="fas fa-ban"></i> Reject</a>
+                                {% endif %}
+                                <a href="{{ url_for('delete_staff', staff_id=staff[0]) }}" class="btn delete"><i class="fas fa-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <div class="navigation">
+                <a href="{{ url_for('index') }}" class="nav-btn"><i class="fas fa-arrow-left"></i> Back to Dashboard</a>
+                <a href="{{ url_for('logout') }}" class="nav-btn logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

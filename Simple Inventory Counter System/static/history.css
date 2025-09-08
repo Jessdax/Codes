@@ -1,0 +1,20 @@
+/* General reset */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+body { background: #f4f6f9; color: #333; padding: 20px; }
+
+/* Navbar */
+nav { background: #2c3e50; padding: 10px; margin-bottom: 20px; border-radius: 5px; }
+nav a { color: white; margin-right: 10px; text-decoration: none; font-weight: bold; }
+nav a:hover { text-decoration: underline; }
+
+/* Tables */
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+th { background: #34495e; color: white; }
+tr:nth-child(even) { background: #f9f9f9; }
+
+/* Headings */
+h1, h2 { margin-bottom: 20px; color: #2c3e50; }
+
+/* Chart container */
+#categoryChart { margin-top: 30px; }

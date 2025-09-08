@@ -1,0 +1,172 @@
+/* =======================
+   VARIABLES & RESET
+======================= */
+:root {
+  --color-bg: #f4f6f9;
+  --color-primary: #4ade80;
+  --color-primary-dark: #16a34a;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-input-bg: #ffffff;
+  --color-input-border: #d1d5db;
+  --color-card-bg: #ffffff;
+  --transition: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color var(--transition), color var(--transition);
+}
+
+/* DARK MODE */
+body.dark-mode {
+  background-color: #1f2937;
+  color: #f9fafb;
+}
+
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode button {
+  background-color: #374151;
+  color: #f9fafb;
+  border-color: #4b5563;
+}
+
+body.dark-mode nav {
+  background-color: #111827;
+}
+
+/* TOGGLE DARK BUTTON */
+.toggle-dark {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--color-primary);
+  color: white;
+  cursor: pointer;
+  transition: background-color var(--transition);
+  z-index: 1000;
+}
+
+.toggle-dark:hover {
+  background-color: var(--color-primary-dark);
+}
+
+/* SIDEBAR / NAV */
+nav {
+  width: 220px;
+  background-color: #1e293b;
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+nav h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 0;
+  transition: color var(--transition);
+}
+
+nav a:hover {
+  color: var(--color-primary);
+}
+
+/* MAIN CONTENT */
+main {
+  flex: 1;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* FORM STYLING */
+form {
+  background-color: var(--color-card-bg);
+  padding: 30px;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  gap: 6px;
+}
+
+form input, form select {
+  padding: 10px 12px;
+  border: 1px solid var(--color-input-border);
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color var(--transition), background-color var(--transition);
+}
+
+form input:focus, form select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+form button[type="submit"] {
+  padding: 12px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color var(--transition);
+}
+
+form button[type="submit"]:hover {
+  background-color: var(--color-primary-dark);
+}
+
+.hint {
+  font-size: 12px;
+  color: var(--color-text-light);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  body {
+      flex-direction: column;
+  }
+  nav {
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+  }
+  main {
+      padding: 20px;
+  }
+}

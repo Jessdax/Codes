@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Staff Members</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='staff.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <h2><i class="fas fa-users"></i> Staff</h2>
+    </div>
+    <ul class="sidebar-menu">
+      <li><a href="{{ url_for('index') }}"><i class="fas fa-boxes"></i> Dashboard</a></li>
+      <li><a href="{{ url_for('add') }}"><i class="fas fa-plus-circle"></i> Add Item</a></li>
+      <li><a href="{{ url_for('search') }}"><i class="fas fa-search"></i> Search</a></li>
+      <li><a href="{{ url_for('view_inventory') }}"><i class="fas fa-clipboard-list"></i> Inventory</a></li>
+      <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+    <h1>Registered Staff</h1>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="flash">
+          {% for msg in messages %}<div>{{ msg }}</div>{% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for s in staff %}
+          <tr>
+            <td data-label="ID">{{ s[0] }}</td>
+            <td data-label="Username">{{ s[1] }}</td>
+            <td data-label="Action">
+              <a class="delete-btn" href="{{ url_for('delete_staff', staff_id=s[0]) }}" onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </main>
+</body>
+</html>
